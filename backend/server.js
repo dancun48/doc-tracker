@@ -1,36 +1,46 @@
-import express from 'express';
-import cors from 'cors';
-import 'dotenv/config';
-import connectDB from './config/mongodb.js';
-import connectCloudinary from './config/cloudinary.js';
-import adminRouter from './routes/adminRoute.js';
-import doctorRouter from './routes/doctorRoute.js';
-import userRouter from './routes/userRoutes.js';
-import paymentRouter from './routes/paymentRoutes.js'
-
+import express from "express";
+import cors from "cors";
+import "dotenv/config";
+import connectDB from "./config/mongodb.js";
+import connectCloudinary from "./config/cloudinary.js";
+import adminRouter from "./routes/adminRoute.js";
+import doctorRouter from "./routes/doctorRoute.js";
+import userRouter from "./routes/userRoutes.js";
+import paymentRouter from "./routes/paymentRoutes.js";
 
 // app config
 const app = express();
 
 const PORT = process.env.PORT || 5001;
+const allowedOrigins = [
+  "https://doc-tracker-admin.vercel.app/",
+  "https://doc-tracker-user.vercel.app/",
+];
 connectDB();
 connectCloudinary(); // online sotorage for images
 
+// allows the backend to connect with the frontend
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+); 
 //middlewares
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.use(cors()); // allows the backend to connect with the frontend
+app.use(express.urlencoded({ extended: true }));
 
 // api endpoints
-app.use('/api/admin', adminRouter); // localhost:5001/api/admin
-app.use('/api/doctor', doctorRouter)
-app.use('/api/user', userRouter)
-app.use('/api/payment', paymentRouter)
+app.use("/api/admin", adminRouter); // localhost:5001/api/admin
+app.use("/api/doctor", doctorRouter);
+app.use("/api/user", userRouter);
+app.use("/api/payment", paymentRouter);
 
-app.get('/', (req, res)=>{
-    res.send('API working')
-})
+app.get("/", (req, res) => {
+  res.send("API working");
+});
 
-app.listen(PORT, ()=> {
-    console.log(`Server started on PORT ${PORT}`)
-})
+app.listen(PORT, () => {
+  console.log(`Server started on PORT ${PORT}`);
+});
