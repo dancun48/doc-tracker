@@ -13,8 +13,8 @@ const app = express();
 
 const PORT = process.env.PORT || 5001;
 const allowedOrigins = [
-  "https://doc-tracker-admin.vercel.app/",
-  "https://doc-tracker-user.vercel.app/",
+  "https://doc-tracker-admin.vercel.app",
+  "https://doc-tracker-user.vercel.app",
 ];
 connectDB();
 connectCloudinary(); // online sotorage for images
