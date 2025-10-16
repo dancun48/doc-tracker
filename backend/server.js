@@ -37,9 +37,6 @@ app.use("/api/payment", paymentRouter);
 app.get("/", (req, res) => {
   res.send("API working");
 });
-app.get('/api/test', (req,res)=>{
-  res.json({message: "CORS working well"})
-});
 
 app.listen(PORT, () => {
   console.log(`Server started on PORT ${PORT}`);
