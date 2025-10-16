@@ -11,7 +11,7 @@ const Login = () => {
   const [state, setState] = useState("Sign Up");
 
   const [email, setEmail] = useState("");
-  const [userName, setUserName] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
   const onSubmitHandler = async (event) => {
@@ -71,8 +71,8 @@ const Login = () => {
             <input
               type="text"
               placeholder="Enter name"
-              onChange={(e) => setUserName(e.target.value)}
-              value={userName}
+              onChange={(e) => setName(e.target.value)}
+              value={name}
               required
               className="border border-zinc-400 rounded w-full p-2 mt-1"
             />

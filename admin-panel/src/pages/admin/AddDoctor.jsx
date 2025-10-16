@@ -3,6 +3,7 @@ import { assets } from "../../assets/assets_admin/assets";
 import { AdminContext } from "../../context/AdminContext";
 import { toast } from "react-toastify";
 import axios from "axios";
+import {useNavigate} from 'react-router-dom'
 
 const AddDoctor = () => {
   const [docImg, setDocImg] = useState(false);
@@ -18,6 +19,7 @@ const AddDoctor = () => {
   const [address2, setAddress2] = useState("");
 
   const { backendUrl, aToken } = useContext(AdminContext);
+  const navigate = useNavigate()
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -36,10 +38,9 @@ const AddDoctor = () => {
       formData.append("specialty", specialty);
       formData.append("degree", degree);
       formData.append(
-        "addresss",
+        "address",
         JSON.stringify({ line1: address1, line2: address2 })
       );
-      formData.append("experience", experience);
 
       // console log form data
 
@@ -53,11 +54,14 @@ const AddDoctor = () => {
       
       if(data.success){
         toast.success(data.message)
+        navigate('/all-doctors')
       } else {
         toast.error(data.message)
       }
       
-    } catch (error) {}
+    } catch (error) {
+      toast.error(error.message)
+    }
   };
 
   return (
