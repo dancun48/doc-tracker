@@ -12,21 +12,18 @@ import paymentRouter from "./routes/paymentRoutes.js";
 const app = express();
 
 const PORT = process.env.PORT || 5001;
-const allowedOrigins = [
-  "https://doc-tracker-admin.vercel.app",
-  "https://doc-tracker-user.vercel.app",
-];
-connectDB();
-connectCloudinary(); // online sotorage for images
-
 // allows the backend to connect with the frontend
 app.use(
   cors({
-    origin: allowedOrigins,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: ["http://localhost:5173", "http://localhost:5174"],
+    methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true,
   })
-); 
+);
+
+connectDB();
+connectCloudinary(); // online sotorage for images
+
 //middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -39,6 +36,9 @@ app.use("/api/payment", paymentRouter);
 
 app.get("/", (req, res) => {
   res.send("API working");
+});
+app.get('/api/test', (req,res)=>{
+  res.json({message: "CORS working well"})
 });
 
 app.listen(PORT, () => {
