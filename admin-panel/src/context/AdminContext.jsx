@@ -1,7 +1,6 @@
 import { createContext, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import {useNavigate} from 'react-router-dom'
 
 export const AdminContext = createContext();
 
@@ -36,12 +35,10 @@ const createAxiosInstance = () => {
   instance.interceptors.response.use(
     (response) => response,
     (error) => {
-      const navigate = useNavigate()
       if (error.response?.status === 401) {
         // Handle unauthorized access
         localStorage.removeItem("aToken");
         toast.error("Session expired. Please login again.");
-        navigate(backendUrl + '/api/admin/login')
       }
       return Promise.reject(error);
     }
