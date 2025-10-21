@@ -12,7 +12,6 @@ const createDoctorAxiosInstance = () => {
   
   const instance = axios.create({
     baseURL: backendUrl,
-    timeout: 10000,
     headers: {
       'Content-Type': 'application/json',
     },
