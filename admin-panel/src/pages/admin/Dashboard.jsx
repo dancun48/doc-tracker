@@ -30,7 +30,7 @@ const Dashboard = () => {
             <img className="w-14" src={assets.appointments_icon} alt="" />
             <div>
               <p className="text-xl font-semibold text-gray-600">
-                {dashData.doctors}
+                {dashData.appointments}
               </p>
               <p className="text-gray-400">Appointments</p>
             </div>
@@ -39,7 +39,7 @@ const Dashboard = () => {
             <img className="w-14" src={assets.patients_icon} alt="" />
             <div>
               <p className="text-xl font-semibold text-gray-600">
-                {dashData.doctors}
+                {dashData.patients}
               </p>
               <p className="text-gray-400">Patients</p>
             </div>
@@ -48,7 +48,7 @@ const Dashboard = () => {
         <div className="bg-white">
           <div className="flex items-center gap-2.5 px-4 py-4 mt-10 rounded-t border">
             <img className="w-14" src={assets.list_icon} alt="" />
-            <p className="font-semibold">Latest Bookings</p>
+            <p className="font-semibold text-red-400">Latest Bookings</p>
           </div>
           <div className="pt-4 border border-t-0">
             {dashData.latestAppointments.map((item, index) => (
@@ -72,7 +72,7 @@ const Dashboard = () => {
                 {item.cancelled ? (
                   <p className="text-red-400 text-sm font-medium">Cancelled</p>
                 ) : item.isCompleted ? (
-                  <p className="text-greeb-500 text-sm font-medium">
+                  <p className="text-green-500 text-sm font-medium">
                     Completed
                   </p>
                 ) : (

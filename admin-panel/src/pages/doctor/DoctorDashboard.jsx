@@ -51,7 +51,7 @@ export const DoctorDashboard = () => {
         <div className="bg-white">
           <div className="flex items-center gap-2.5 px-4 py-4 mt-10 rounded-t border">
             <img className="w-14" src={assets.list_icon} alt="" />
-            <p className="font-semibold">Latest Bookings</p>
+            <p className="font-semibold text-red-400">Latest Bookings</p>
           </div>
           <div className="pt-4 border border-t-0">
             {dashData.latestAppointments.map((item, index) => (

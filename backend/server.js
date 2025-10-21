@@ -12,14 +12,21 @@ import paymentRouter from "./routes/paymentRoutes.js";
 const app = express();
 
 const PORT = process.env.PORT || 5001;
+
 // allows the backend to connect with the frontend
-app.use(
-  cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"],
-    methods: ["POST", "GET", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: [
+    'https://your-frontend1.vercel.app',
+    'https://your-frontend2.vercel.app',
+    'http://localhost:5173', // for local development
+    'http://localhost:5174', // for local development
+    'http://localhost:5175', // for local development
+    'http://localhost:5001' // for local development
+  ],
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 
 connectDB();
 connectCloudinary(); // online sotorage for images
