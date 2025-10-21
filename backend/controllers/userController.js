@@ -154,8 +154,6 @@ const bookAppointment = async (req, res) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decoded.id;
 
-    console.log("Appointment booking for user:", userId);
-
     if (!userId || !docId || !slotDate || !slotTime) {
       return res.json({
         success: false,
@@ -212,7 +210,6 @@ const bookAppointment = async (req, res) => {
 
     res.json({ success: true, message: "Appointment booked successfully!" });
   } catch (error) {
-    console.log("Appointment booking error:", error);
     res.json({ success: false, message: error.message });
   }
 };
@@ -233,7 +230,6 @@ const listAppointment = async (req, res) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decoded.id;
 
-    console.log("Appointment for:", userId);
     // const {/*userId*/} = req.user.id;
     const appointments = await appointmentModel.find({ userId });
     res.json({ success: true, appointments });
@@ -257,10 +253,6 @@ const cancelAppointment = async (req, res) => {
       // If body is an object with appointmentId property
       appointmentId = req.body.appointmentId;
     }
-
-    console.log("=== CANCEL APPOINTMENT START ===");
-    console.log("Request body:", req.body);
-    console.log("Extracted appointmentId:", appointmentId);
 
     if (!appointmentId) {
       return res.status(400).json({
@@ -374,8 +366,7 @@ const initiatePayment = async (req, res) => {
       }
     );
 
-    // For now, simulate successful payment
-    // In production, integrate with Jenga API here
+    // simulating successful payment to integrate with Jenga API in prduction
     setTimeout(async () => {
       await appointmentModel.findOneAndUpdate(
         { _id: appointmentId },

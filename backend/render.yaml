@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: doctor-appointment-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        fromDatabase:
+          name: doctor-appointment-db
+          property: connectionString
+      - key: CLOUDINARY_NAME
+        value: dc0dmx1tu
+      - key: CLOUDINARY_API_KEY
+        value: 947627925191348
+      - key: CLOUDINARY_SECRET_KEY
+        value: Mcoext3VftKDN-MkWVzhfh_hJcg
+      - key: JWT_SECRET
+        value: dancun
+      - key: ADMIN_EMAIL
+        value: admin@doctracker.com
+      - key: ADMIN_PASSWORD
+        value: qwerty123
