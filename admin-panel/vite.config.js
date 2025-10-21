@@ -8,8 +8,7 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: false // Disable sourcemaps in production to avoid issues
+    sourcemap: false
   },
-  // Add base URL for production
   base: './'
 })
