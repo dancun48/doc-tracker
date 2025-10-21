@@ -15,9 +15,8 @@ const PORT = process.env.PORT || 5001;
 
 // CORS configuration
 const allowedOrigins = [
-  'https://your-admin-frontend.vercel.app',
-  'https://your-doctor-frontend.vercel.app', 
-  'https://your-user-frontend.vercel.app',
+  'https://doctrackeruser.vercel.app',
+  'https://doctrackeradmin.vercel.app', 
   'http://localhost:5173',
   'http://localhost:5174', 
   'http://localhost:5175',
